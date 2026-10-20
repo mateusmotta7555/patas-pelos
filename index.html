@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patas & Pelos - Clínica Veterinária</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+
+    <!-- Lado esquerdo: identidade e serviços -->
+    <aside class="marca">
+      <p class="logo">Patas &amp; Pelos</p>
+      <h1>Cuidado de verdade para quem espera por você em casa.</h1>
+      <ul class="servicos">
+        <li><strong>Consultas</strong> clínicas e de rotina</li>
+        <li><strong>Vacinação</strong> e controle preventivo</li>
+        <li><strong>Exames</strong> e acompanhamento</li>
+        <li><strong>Cirurgias</strong> e pós-operatório</li>
+      </ul>
+    </aside>
+
+    <main class="conteudo">
+      <div id="aviso" class="aviso" role="status" aria-live="polite" hidden></div>
+
+      <!-- TELA 1: login / cadastro da equipe -->
+      <section id="tela-login" class="cartao">
+        <h2>Área da Equipe</h2>
+        <form id="form-login" novalidate>
+          <label for="login-email">E-mail</label>
+          <input id="login-email" type="email" autocomplete="username" required>
+          <label for="login-senha">Senha (mínimo 6 caracteres)</label>
+          <input id="login-senha" type="password" autocomplete="current-password" minlength="6" required>
+          <button type="submit" class="botao">Entrar</button>
+          <button type="button" id="btn-cadastrar" class="botao secundario">Cadastrar</button>
+        </form>
+
+        <p class="separador">É tutor e quer marcar uma consulta?</p>
+        <button type="button" id="ir-agendar" class="botao secundario">Solicitar pré-agendamento</button>
+      </section>
+
+      <!-- TELA 2: formulário de pré-agendamento (público) -->
+      <section id="tela-agendar" class="cartao" hidden>
+        <h2>Pré-agendamento de consulta</h2>
+        <p class="ajuda">Campos com * são obrigatórios. A recepção entra em contato para confirmar o dia e o horário.</p>
+        <form id="form-agendar" novalidate>
+          <fieldset>
+            <legend>Dados do tutor</legend>
+            <label for="ag-tutor">Nome do tutor *</label>
+            <input id="ag-tutor" type="text" autocomplete="name" required>
+            <div class="duas">
+              <div>
+                <label for="ag-telefone">Telefone com DDD *</label>
+                <input id="ag-telefone" type="tel" inputmode="numeric" placeholder="(48) 99999-9999" autocomplete="tel" required>
+              </div>
+              <div>
+                <label for="ag-email">E-mail</label>
+                <input id="ag-email" type="email" autocomplete="email">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Dados do animal</legend>
+            <div class="duas">
+              <div>
+                <label for="ag-animal">Nome do animal *</label>
+                <input id="ag-animal" type="text" required>
+              </div>
+              <div>
+                <label for="ag-especie">Espécie</label>
+                <select id="ag-especie">
+                  <option value="Cachorro">Cachorro</option>
+                  <option value="Gato">Gato</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </div>
+            </div>
+            <label for="ag-sintoma">Sintoma apresentado *</label>
+            <textarea id="ag-sintoma" rows="4" placeholder="Desde quando ocorre? O animal está comendo normalmente?" required></textarea>
+            <label for="ag-data">Data preferida</label>
+            <input id="ag-data" type="date">
+          </fieldset>
+
+          <button type="submit" class="botao">Enviar solicitação</button>
+        </form>
+        <button type="button" class="link" data-voltar>Voltar ao início</button>
+      </section>
+
+      <!-- TELA 3: painel da equipe -->
+      <section id="tela-painel" class="cartao largo" hidden>
+        <div class="topo-painel">
+          <div>
+            <h2>Solicitações de consulta</h2>
+            <p class="ajuda" id="boas-vindas"></p>
+          </div>
+          <button type="button" id="btn-sair" class="botao secundario pequeno">Sair</button>
+        </div>
+        <div class="tabela-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Recebida em</th><th>Tutor</th><th>Telefone</th><th>Animal</th><th>Sintoma</th><th>Data preferida</th>
+              </tr>
+            </thead>
+            <tbody id="lista"></tbody>
+          </table>
+        </div>
+        <p id="vazio" class="ajuda" hidden>Nenhuma solicitação recebida ainda.</p>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
